@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+</head>
+<body>
+<form>
+    <input type="text" id="a">
+    <hr>
+    <input type="text" id="b">
+    <button id="button">提交</button>
+</form>
+<script>
+    $("button").click(function () {
+        var a = $('#a').val()
+        var b = $('#b').val()
+        dict = {key1:a,key2:b}
+        $.post({% url 'posthandle' %},dict,function(data){
+            alert(data.c)
+        })
+    })
+</script>
+</body>
+</html>

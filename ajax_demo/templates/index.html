@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提交</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+</head>
+<body>
+<form>
+    <h1>a:</h1>
+    <input type="text" id="a" name="a">
+    <h1>b:</h1>
+    <input type="text" id="b" name="b">
+    <h1>result:</h1>
+    <p id="result"></p>
+    <button type="button" id="sum">ajax提交</button>
+</form>
+<script>
+    $("button").click(function () {
+        var a = $('#a').val();
+        var b = $("#b").val();
+        $.get("{% url 'gethandle' %}", {"key1": a, "key2": b}, function (data, status) {
+            $('#result').html(data.c)
+        })
+    })
+</script>
+</body>
+</html>
