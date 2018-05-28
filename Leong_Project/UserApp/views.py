@@ -4,10 +4,12 @@ from . import models
 
 
 # Create your views here.
+# 返回一个注册页面
 def register(request):
     return render(request, 'register.html')
 
 
+# 处理用户输入的注册信息
 def register_handle(request):
     uname1 = request.POST['user_name']
     upwd = request.POST['pwd']
@@ -28,10 +30,12 @@ def register_handle(request):
             return render(request, 'login.html')
 
 
+# 返回一个登录页面
 def login(request):
     return render(request, 'login.html')
 
 
+# 处理用户登录的信息
 def loginhandle(request):
     uname = request.POST['username']
     upwd = request.POST['pwd']
@@ -39,6 +43,6 @@ def loginhandle(request):
     try:
         uname1 = models.UserInfo.objects.get(uname=uname)
         if upwd == uname1.upwd:
-            return render(request, 'index.html')
+            return redirect('main:index')
     except:
         return HttpResponse('你的账号或者密码错误，请重新输入')
